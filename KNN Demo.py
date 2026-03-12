@@ -6,10 +6,10 @@ from sklearn.neighbors import KNeighborsClassifier
 
 # loading flattened training data
 X_train = np.load("processed_data/flattened_X_train.npy", allow_pickle=True)
-y_train = np.load("processed_data/flattened_y_train.npy", allow_pickle=True)
+y_train = np.load("processed_data/y_train.npy", allow_pickle=True)
 
 # load flattened test data
-X_test = np.load("processed_data/X_demo.npy", allow_pickle=True)
+X_test = np.load("processed_data/flattened_X_demo.npy", allow_pickle=True)
 y_test = np.load("processed_data/y_demo.npy", allow_pickle=True)
 
 # fitting the label encoder on training labels
@@ -35,11 +35,11 @@ y_pred_labels = le.inverse_transform(y_pred_enc)
 # calculating probability of each genre for the prediction
 probs = knn.predict_proba(X_test)
 
-# prints the true genre
-print(y_pred_labels)
-
 # prints the predicted genre
-print(y_test)
+print(f"Predicted genre: {y_pred_labels[0]}")
+
+# prints the true genre
+print(f"True genre: {y_test[0]}")
 
 # making a df of the probabilities for each genre, then printing to see the confidence for each genre
 df_probs = pd.DataFrame({
