@@ -5,12 +5,12 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.neighbors import KNeighborsClassifier
 
 # loading flattened training data
-X_train = np.load("flattened_X_train.npy")
-y_train = np.load("flattened_y_train.npy")
+X_train = np.load("processed_data/flattened_X_train.npy", allow_pickle=True)
+y_train = np.load("processed_data/flattened_y_train.npy", allow_pickle=True)
 
 # load flattened test data
-X_test = np.load("X_test_full.npy")
-y_test = np.load("y_test_full.npy")
+X_test = np.load("processed_data/X_demo.npy", allow_pickle=True)
+y_test = np.load("processed_data/y_demo.npy", allow_pickle=True)
 
 # fitting the label encoder on training labels
 le = LabelEncoder()
@@ -45,7 +45,7 @@ print(y_test)
 df_probs = pd.DataFrame({
     "genre": le.classes_,
     "probability": probs[0]
-})
+}).sort_values("probability", ascending=False)
 
 # printing the probability table
 print(df_probs)
