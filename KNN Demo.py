@@ -18,9 +18,9 @@ y_train_enc = le.fit_transform(y_train)
 
 # initializing knn with best parameters determined (not loading model since this takes longer, just manually defining)
 knn = KNeighborsClassifier(
-    n_neighbors=20,
+    n_neighbors=47,
     weights="distance",
-    metric="manhattan"
+    metric="euclidean"
 )
 
 # fitting model on training data
